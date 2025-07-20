@@ -4,15 +4,18 @@ import mon from "mongoose";
 import authRoutes from './router/userrout.js';
 import todoRoutes from './router/todorouter.js';
 import cors from "cors";
+import mongoose from "mongoose";
+
 
 const app=exp();
+app.use(cors());
 app.use(exp.json());
 app.use("/auth",authRoutes);
 app.use("/task",todoRoutes);
  const connectToDb= async ()=>
 {
 try{
-   await mon.connect(appConfig.mongo_url);
+   await mongoose.connect(appConfig.mongo_url);
      console.log("Mongo Db connection Successfull")
     }
     catch(err)
